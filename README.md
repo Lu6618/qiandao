@@ -15,7 +15,7 @@ Surge module and script for daily points check-in on `https://ue2.taotu.ink`.
 ## Usage
 
 1. Import `taotu-ue2-checkin.module.sgmodule` in Surge.
-2. Make sure `script-path=taotu-checkin.js` points to the real local or remote JS file.
+2. The module already points to the GitHub raw JS URL for this repository.
 3. Enable MITM for `ue2.taotu.ink`.
 4. Open `https://ue2.taotu.ink/?tab=profile` once while logged in.
 5. Wait for the auth capture notification.
@@ -24,8 +24,8 @@ Surge module and script for daily points check-in on `https://ue2.taotu.ink`.
 
 ## Remote Script Path
 
-If this repository is hosted on GitHub, change the module script path to:
+This repository uses:
 
 ```text
-https://raw.githubusercontent.com/<owner>/<repo>/main/taotu-checkin.js
+https://raw.githubusercontent.com/Lu6618/qiandao/main/taotu-checkin.js
 ```

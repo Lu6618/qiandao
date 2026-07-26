@@ -3,9 +3,9 @@
 #!category=Scripts
 
 [Script]
-# Put taotu-checkin.js in the same script directory, or replace script-path with your raw JS URL.
-Taotu UE2 Auth Capture = type=http-request,pattern=^https:\/\/ue2\.taotu\.ink\/(?:api\/requests\/check|api\/user\/points\/info|\?tab=profile|$),requires-body=false,script-path=taotu-checkin.js,timeout=10
-Taotu UE2 Daily Check-in = type=cron,cronexp="0 9 * * *",script-path=taotu-checkin.js,timeout=30
+# Uses the raw GitHub JS URL directly.
+Taotu UE2 Auth Capture = type=http-request,pattern=^https:\/\/ue2\.taotu\.ink\/(?:api\/requests\/check|api\/user\/points\/info|\?tab=profile|$),requires-body=false,script-path=https://raw.githubusercontent.com/Lu6618/qiandao/main/taotu-checkin.js,timeout=10
+Taotu UE2 Daily Check-in = type=cron,cronexp="0 9 * * *",script-path=https://raw.githubusercontent.com/Lu6618/qiandao/main/taotu-checkin.js,timeout=30
 
 [MITM]
 hostname = %APPEND% ue2.taotu.ink
