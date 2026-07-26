@@ -1,0 +1,11 @@
+#!name=Taotu UE2 Check-in
+#!desc=Capture login state from ue2.taotu.ink and run daily points check-in.
+#!category=Scripts
+
+[Script]
+# Put taotu-checkin.js in the same script directory, or replace script-path with your raw JS URL.
+Taotu UE2 Auth Capture = type=http-request,pattern=^https:\/\/ue2\.taotu\.ink\/(?:api\/requests\/check|api\/user\/points\/info|\?tab=profile|$),requires-body=false,script-path=taotu-checkin.js,timeout=10
+Taotu UE2 Daily Check-in = type=cron,cronexp="0 9 * * *",script-path=taotu-checkin.js,timeout=30
+
+[MITM]
+hostname = %APPEND% ue2.taotu.ink
