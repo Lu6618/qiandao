@@ -13,6 +13,7 @@ const CFG = {
   name: "桃兔签到",
   baseUrl: "https://ue2.taotu.ink",
   storageKey: "taotu_ue2_auth",
+  captureNoticeKey: "taotu_ue2_capture_notice_shown",
   notify: true,
 };
 
@@ -56,6 +57,14 @@ function saveAuth(auth) {
   return $persistentStore.write(JSON.stringify(auth), CFG.storageKey);
 }
 
+function hasShownCaptureNotice() {
+  return $persistentStore.read(CFG.captureNoticeKey) === "1";
+}
+
+function markCaptureNoticeShown() {
+  return $persistentStore.write("1", CFG.captureNoticeKey);
+}
+
 function captureAuth() {
   const headers = ($request && $request.headers) || {};
   const cookie = headerValue(headers, "Cookie");
@@ -75,7 +84,16 @@ function captureAuth() {
     updatedAt: new Date().toISOString(),
   });
 
-  notify(ok ? "登录态已保存" : "登录态保存失败", ok ? "可以手动运行一次签到脚本测试。" : "请检查 Surge 持久化存储权限。");
+  if (!ok) {
+    notify("登录态保存失败", "请检查 Surge 持久化存储权限。");
+    return done();
+  }
+
+  if (!hasShownCaptureNotice()) {
+    markCaptureNoticeShown();
+    notify("登录态已保存", "可以手动运行一次签到脚本测试。");
+  }
+
   done();
 }
 
