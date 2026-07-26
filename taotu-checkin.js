@@ -1,16 +1,16 @@
 /*
- * Surge script for https://ue2.taotu.ink daily check-in.
+ * Surge 桃兔 UE2 每日签到脚本。
  *
- * Capture mode:
- *   Open https://ue2.taotu.ink/?tab=profile once while Surge MITM is enabled.
+ * 抓取模式：
+ *   开启 Surge MITM 后，登录并打开一次 https://ue2.taotu.ink/?tab=profile
  *
- * Cron mode:
+ * 定时模式：
  *   1. GET  /api/user/points/info
- *   2. POST /api/user/points/checkin when has_checked_in is false.
+ *   2. 当 has_checked_in 为 false 时，POST /api/user/points/checkin
  */
 
 const CFG = {
-  name: "Taotu Check-in",
+  name: "桃兔签到",
   baseUrl: "https://ue2.taotu.ink",
   storageKey: "taotu_ue2_auth",
   notify: true,
